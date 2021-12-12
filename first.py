@@ -18,12 +18,15 @@ pygame.display.set_icon(icon) #apply the icon
 #Player
 playerImg = pygame.image.load('png_logo/001-spaceship.png')
 playerX = 370
-playerY = 480   
+playerY = 300   
 
 #Enemy
 enemyImg = pygame.image.load('png/001-space-invaders.png')
-enemyX = random.randint(0,764)
-enemyY = random.randint(50,150)  
+enemyX = random.randint(random.randint(0,220),random.randint(540,764))
+enemyY = random.randint(0,564)  
+
+enemyX_change = 0.1
+enemyY_change = 0.1
 
 playerX_change = 0
 playerY_change = 0
@@ -121,6 +124,24 @@ while running:
     elif playerY >= 564:
         print('this is a limit')
         playerY = 564 
+
+    enemyX += enemyX_change
+    enemyY += enemyY_change
+
+    #limits enemy
+    if enemyX <= 0:
+        print('this is a limit')
+        enemyX = 0
+    elif enemyX >= 744:
+        print('this is a limit')
+        enemyX = 744
+    if enemyY <= 0:
+        print('this is a limit')
+        enemyY = 0
+    elif enemyY >= 540:
+        print('this is a limit')
+        enemyY = 540 
+
     player(playerX,playerY) #call the player function
     enemy(enemyX,enemyY)
     pygame.display.update() #update the screen
