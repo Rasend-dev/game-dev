@@ -1,4 +1,5 @@
 import pygame
+import random
 
 #initialize the pygame
 pygame.init()
@@ -21,8 +22,8 @@ playerY = 480
 
 #Enemy
 enemyImg = pygame.image.load('png/001-space-invaders.png')
-enemyX = 350
-enemyY = 100  
+enemyX = random.randint(0,764)
+enemyY = random.randint(50,150)  
 
 playerX_change = 0
 playerY_change = 0
@@ -32,6 +33,9 @@ def player(x,y):
 
 def enemy(x,y):
     screen.blit(enemyImg,(x,y))
+
+def test_func(speed):
+    print(speed)
 
 a = 97
 d = 100
@@ -54,7 +58,6 @@ while running:
     for event in pygame.event.get(): # this will get the events from the window
         if event.type == pygame.QUIT:
             running = False
-
         #keyborad events 
         #width     
         if event.type == pygame.KEYDOWN and event.key == a:
@@ -100,7 +103,7 @@ while running:
             playerY_change = ship_speed
         if holding_s == False and holding_w == True:
             playerY_change = -ship_speed
-
+            
     #apply changes            
     playerX += playerX_change
     playerY += playerY_change
