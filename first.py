@@ -25,8 +25,7 @@ enemyImg = pygame.image.load('png/001-space-invaders.png')
 enemyX = random.randint(random.randint(0,220),random.randint(540,764))
 enemyY = random.randint(0,564)  
 
-enemyX_change = 0.1
-enemyY_change = 0.1
+enemy_change = [-0.12,0.12]
 
 playerX_change = 0
 playerY_change = 0
@@ -37,8 +36,11 @@ def player(x,y):
 def enemy(x,y):
     screen.blit(enemyImg,(x,y))
 
-def test_func(speed):
-    print(speed)
+def find_ship(player_ship,enemy_ship):
+    if player_ship != enemy_ship:
+        print("probando")
+    enemy(enemy_ship[0],enemy_ship[1])
+    
 
 a = 97
 d = 100
@@ -125,8 +127,8 @@ while running:
         print('this is a limit')
         playerY = 564 
 
-    enemyX += enemyX_change
-    enemyY += enemyY_change
+    enemyX += random.choice(enemy_change)
+    enemyY += random.choice(enemy_change)
 
     #limits enemy
     if enemyX <= 0:
@@ -142,6 +144,7 @@ while running:
         print('this is a limit')
         enemyY = 540 
 
+    
     player(playerX,playerY) #call the player function
-    enemy(enemyX,enemyY)
+    find_ship([playerX,playerY],[enemyX,enemyY])
     pygame.display.update() #update the screen
