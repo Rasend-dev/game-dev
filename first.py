@@ -10,6 +10,8 @@ screen = pygame.display.set_mode((800,600)) #800 = width, 600 = height
 #the infinite loop will allow us to have the window open   
 running = True
 
+background = pygame.image.load('background.png')
+
 #Title and icon 
 pygame.display.set_caption("First Game")
 icon = pygame.image.load('png_logo/001-spaceship.png') #load the icon 
@@ -58,14 +60,15 @@ holding_d = False
 holding_s = False
 holding_w = False
 
-ship_speed = 0.3
+ship_speed = 2
 
 #Game loop
 while running:
     #every time that the cicle repeats the screen will be cleared
     #if we do not clear the screen, the image will be scaling  
     screen.fill((0,0,0)) #fill the screen with black
-
+    #background
+    screen.blit(background,(0,0))
     for event in pygame.event.get(): # this will get the events from the window
         if event.type == pygame.QUIT:
             running = False
